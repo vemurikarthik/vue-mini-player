@@ -135,50 +135,6 @@ export default class VueMiniPlayerCore {
         }, 8000) as unknown as number
       },
       /** wrapper */
-      wrapperMouseDown() {
-        this.dragging = true
-        this.hidden = false
-      },
-      wrapperMouseUp() {
-        this.dragging = false
-        const e = document.getElementById(WrapperID)
-        if (e) {
-          if (e.offsetLeft > window.innerWidth / 2) this.onRight = true
-          else this.onRight = false
-        }
-      },
-      wrapperMouseEnter() {
-        this.hover = true
-        this.clearHiddenTimer()
-      },
-      wrapperMouseLeave() {
-        this.hover = false
-        this.startTimer()
-      },
-      clickShow(e: MouseEvent) {
-        clearTimeout(hiddenTimer)
-        this.hidden = !this.hidden
-        if (this.hidden)
-          this.showList = false
-        e.preventDefault();
-        this.startTimer()
-      },
-      _UpdateShowPrecentage(p: any) {
-        if (p > 1) p = 1
-        else if (p < 0) p = 0
-        this.showupPrecentage = (p * 100).toFixed(2)
-        this.slidingTime = this.duration * p
-      },
-      jumpTime(e: MouseEvent) {
-        if (isNaN(this.store.e.duration)) return
-        const slider = e.currentTarget
-        // @ts-expect-error
-        let p = e.offsetX / slider.clientWidth
-        this._UpdateShowPrecentage(p)
-        this.sliding = true
-        // exec p 2 slider length
-        // @ts-expect-error
-        p *= slider.clientWidth
 
         const slide = (e: MouseEvent) => {
           const s = document.getElementById(Wrapper-ID)
@@ -198,23 +154,6 @@ export default class VueMiniPlayerCore {
         window.addEventListener('mousemove', slide)
         window.addEventListener('mouseup', cs)
       },
-      switchListShow() {
-        this.showList = !this.showList
-      },
-      async CorePlay() {
-        try {
-          await store.Play()
-        } catch (err) {
-          console.log(err);
-        }
-      },
-      CorePause() {
-        store.Pause()
-      },
-      CorePlaySelectSong(id: string) {
-        store.PlaySelectSong(id)
-      }
-    })
 
     app.directive('draggable', Draggable)
     /** wrapper directive */

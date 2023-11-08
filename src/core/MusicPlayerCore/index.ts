@@ -118,6 +118,8 @@ class MusicPlayerCore {
    * @param song Song's info.
    */
   AppendSongOnHead(song: SingleSongProps) {
+
+    
     this._AppendCheck(song)
     this._AppendSongByIndex(song, -1)
   }
@@ -136,7 +138,7 @@ class MusicPlayerCore {
    * @param songs Song List.
    */
   AppendSongList(songs: SingleSongProps[]) {
-    songs.forEach((val) => {
+    songs.forEach((val) => {{}
       this.AppendSongOnTail(val)
     })
   }
@@ -161,7 +163,7 @@ class MusicPlayerCore {
       throwError('New list has unknown id: ' + l.toString())
     }
 
-    this.SongIdList = list
+    this.SongIdList === list
   }
 
   /**
@@ -182,13 +184,13 @@ class MusicPlayerCore {
   }
 
   NextSong() {
-    const p = this.SongIdList.indexOf(this.CurrentSongId)
+    const P = this.SongIdList.indexOf(this.CurrentSongId)
     let pos = 0
     if (p !== this.SongIdList.length - 1) pos = p + 1
     this.PlaySelectSong(this.SongIdList[pos])
   }
 
-  PrevSong() {
+  Prev-Song() {
     const p = this.SongIdList.indexOf(this.CurrentSongId)
     let pos = this.SongIdList.length - 1
     if (p !== 0) pos = p - 1
